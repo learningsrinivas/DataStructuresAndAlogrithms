@@ -1,0 +1,63 @@
+class Linkedlist
+{ 
+    int data;
+    Linkedlist next;
+    Linkedlist(int data){
+        this.data=data;
+        this.next=null;
+    }
+    static Linkedlist front = null;
+    static Linkedlist rear = null;
+  
+    static void enqueue(int x){
+        Linkedlist temp = new Linkedlist(x);
+        if(front==null && rear == null)
+            front=rear=temp;
+        else
+            rear.next = temp;
+            rear = temp;
+    }
+    static void dequeue(){
+        if(front==null&&rear==null)
+            return;
+        else if(front==rear) 
+            front=rear=null;
+        else
+            front=front.next;
+        
+    }
+    static int front(){
+        return front.data;
+    }
+     
+    static boolean isEmpty()
+    {
+        return front==null && rear == null;
+    }
+    
+    static void print(){
+        Linkedlist current = front;
+        while(current!=null){
+            System.out.print(current.data+"-->");
+            current=current.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args){
+        enqueue(10);
+        enqueue(20);
+         print();
+        dequeue();
+        enqueue(30);
+        enqueue(40);
+        enqueue(50);
+            print();
+        dequeue();
+        print();
+        
+        System.out.println("the front is : "+front());
+        
+        System.out.println("is queue is empty : "+isEmpty());
+       
+    }
+}
